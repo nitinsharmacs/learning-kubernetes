@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: app-rs
+  labels:
+    type: router-rs
+spec:
+  template:
+    metadata:
+      name: router-pod
+      labels:
+        type: router
+    spec:
+      containers:
+        - name: nginx
+          image: nginx
+  replicas: 2
+  selector:
+    matchLabels:
+      type: router
+

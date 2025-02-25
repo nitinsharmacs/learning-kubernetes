@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: timer-pod
+  labels:
+    type: app
+spec:
+  containers:
+    - name: timer
+      image: localhost/timer:latest

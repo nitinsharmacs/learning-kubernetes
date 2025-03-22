@@ -4,8 +4,18 @@ metadata:
   name: nginx
   labels:
     type: router
+  namespace: learning
 spec:
   containers:
     - name: nginx
       image: nginx
-
+      envFrom:
+        - configMapRef:
+            name: mysql-db-env
+      resources:
+        requests:
+          cpu: 1
+          memory: 2Gi
+        limits:
+          memory: 4Gi
+          cpu: 2

@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mysql-db-env
+  namespace: learning
+data:
+  USER: user
+  PASSWORD: password
+

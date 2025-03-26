@@ -10,8 +10,8 @@ spec:
     - name: nginx
       image: nginx
       envFrom:
-        - configMapRef:
-            name: mysql-db-env
+        - secretRef:
+            name: test-secret
       resources:
         requests:
           cpu: 1

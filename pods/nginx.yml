@@ -6,12 +6,13 @@ metadata:
     type: router
   namespace: learning
 spec:
+  serviceAccount: nginx-sa
   containers:
     - name: nginx
       image: nginx
       envFrom:
         - secretRef:
-            name: test-secret
+            name: mysql-db-secret
       resources:
         requests:
           cpu: 1

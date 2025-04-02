@@ -1,0 +1,13 @@
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: read-nginx-pods
+  namespace: learning
+subjects:
+- kind: ServiceAccount
+  name: nginx-sa # Name is case sensitive
+  namespace: learning
+roleRef:
+  kind: Role #this must be Role or ClusterRole
+  name: nginx-pod-reader # this must match the name of the Role or ClusterRole you wish to bind to
+  apiGroup: rbac.authorization.k8s.io

@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-tolerated
+  labels:
+    type: router
+  namespace: learning
+spec:
+  containers:
+    - name: nginx-con
+      image: nginx
+  tolerations:
+    - key: "ssd"
+      value: "true"
+      effect: "NoSchedule"
+      operator: "Equal"
+    - key: "type"
+      effect: "NoSchedule"
+      operator: "Exists"  

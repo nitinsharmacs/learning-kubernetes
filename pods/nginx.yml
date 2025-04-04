@@ -15,8 +15,8 @@ spec:
             name: mysql-db-secret
       resources:
         requests:
-          cpu: 1
-          memory: 2Gi
+          cpu: 100m
+          memory: 200Mi
         limits:
-          memory: 4Gi
-          cpu: 2
+          memory: 1Gi
+          cpu: 1

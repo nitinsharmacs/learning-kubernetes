@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: white
+  namespace: learning
+spec:
+  containers:
+    - name: white-container
+      image: nginx
+  tolerations:
+    - key: type
+      value: B
+      operator: Equal
+      effect: NoSchedule
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+          - matchExpressions:
+            - key: node
+              values:
+                - B
+              operator: In

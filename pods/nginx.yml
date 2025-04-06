@@ -7,6 +7,19 @@ metadata:
   namespace: learning
 spec:
   serviceAccount: nginx-sa
+  initContainers:
+    - name: busybox-1
+      image: busybox
+      command:
+        - sh
+        - -c
+        - echo "Hello from busybox1. Going to sleep"; sleep 60; echo "busybox-1 wokeup!!!"
+    - name: busybox-2
+      image: busybox
+      command:
+        - sh
+        - -c
+        - echo "Hellow from busybox2. Going to sleep"; sleep 70; echo "busybox-2 wokeup!!!"
   containers:
     - name: nginx
       image: nginx

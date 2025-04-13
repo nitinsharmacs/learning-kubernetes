@@ -1,0 +1,16 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: math-add-parallel
+  namespace: learning
+spec:
+  completions: 5
+  parallelism: 3
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: add
+          image: ubuntu
+          command: ["expr"]
+          args: ["2", "+", "2"]

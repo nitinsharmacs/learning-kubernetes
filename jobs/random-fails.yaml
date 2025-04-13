@@ -1,0 +1,13 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: random-fails
+  namespace: learning
+spec:
+  completions: 5
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: random-fails
+          image: kodekloud/random-error

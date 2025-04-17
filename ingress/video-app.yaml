@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: video-app
+  labels:
+    app: video-frontend
+  namespace: learning
+spec:
+  containers:
+    - name: video-app
+      image: kodekloud/ecommerce:video
+      ports:
+        - name: video-app-port
+          containerPort: 8080
+          protocol: TCP

@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: wear-app
+  labels:
+    app: wear-frontend
+  namespace: learning
+spec:
+  containers:
+    - name: wear-app
+      image: kodekloud/ecommerce:apparels
+      ports:
+        - name: wear-app-port
+          containerPort: 8080
+          protocol: TCP

@@ -1,0 +1,16 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: showtime
+  namespace: learning
+spec:
+  schedule: "*/2 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: showtime
+              image: ubuntu
+              command: ["date"]
+          restartPolicy: Never

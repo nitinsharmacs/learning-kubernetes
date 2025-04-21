@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+  labels:
+    type: router
+  namespace: learning
+spec:
+  containers:
+    - name: nginx-con
+      image: nginx
+      volumeMounts:
+        - name: storage
+          mountPath: /storage
+  volumes:
+    - name: storage
+      hostPath:
+        path: /storage
+        type: Directory

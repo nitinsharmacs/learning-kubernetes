@@ -4,6 +4,9 @@ metadata:
   name: busybox-pvc
   namespace: learning
 spec:
+  selector:
+    matchLabels:
+      app: frontend
   accessModes:
     - ReadWriteOnce
   resources:

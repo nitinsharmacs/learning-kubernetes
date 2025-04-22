@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: labelled-pv 
+  namespace: learning  # does not matter. PVs are created irrespective of namespace
+  labels:
+    app: frontend
+spec:
+  accessModes:
+    - ReadWriteOnce
+  capacity:
+    storage: 1Gi
+  hostPath:
+    path: /shared
+

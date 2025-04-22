@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: nginx-with-pvc
+  name: busybox-with-pvc
   labels:
-    type: router
+    type: busybox
   namespace: learning
 spec:
   containers:
-    - name: nginx
+    - name: busybox
       image: nginx
       volumeMounts:
         - name: nginx-pvc
@@ -17,4 +17,4 @@ spec:
       persistentVolumeClaim:
         claimName: nginx-pvc
   nodeSelector:
-    node: C
+    node: B

@@ -15,6 +15,6 @@ spec:
   volumes:
     - name: nginx-pvc
       persistentVolumeClaim:
-        claimName: nginx-pvc
-  nodeSelector:
-    node: C
+        claimName: pvc-with-storageclass
+  # nodeSelector:
+  #   node: C

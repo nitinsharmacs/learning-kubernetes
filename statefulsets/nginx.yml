@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: nginx
+spec:
+  template:
+    metadata:
+      labels:
+        type: nginx-router
+    spec:
+      containers:
+        - name: nginx
+          image: nginx
+          ports:
+            - containerPort: 80
+              name: web
+  replicas: 3
+  selector:
+    matchLabels:
+      type: nginx-router
+  serviceName: nginx-headless-svc
+  #podManagementPolicy: Parallel # for pod creation parallely

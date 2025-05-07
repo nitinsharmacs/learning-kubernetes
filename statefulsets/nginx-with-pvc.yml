@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: nginx
+  namespace: learning
+spec:
+  selector:
+    matchLabels:
+      type: nginx-router
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        type: nginx-router
+    spec:
+      containers:
+        - name: nginx
+          image: nginx
+          volumeMounts:
+            - name: pvc
+              mountPath: /shared
+  volumeClaimTemplates:
+    - metadata:
+        name: pvc
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 500Mi

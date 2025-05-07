@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx
+  labels:
+    type: router
+  namespace: learning
+spec:
+  template:
+    metadata:
+      name: nginx
+      labels:
+        type: router
+    spec:
+      containers:
+        - name: nginx
+          image: nginx
+          volumeMounts:
+            - name: pvc
+              mountPath: /shared
+      volumes:
+        - name: pvc
+          persistentVolumeClaim:
+            claimName: nginx-pvc
+  replicas: 2
+  selector:
+    matchLabels:
+      type: router
+

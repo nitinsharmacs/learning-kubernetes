@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: configmap-volume
+  namespace: learning
+spec:
+  containers:
+    - image: nginx
+      name: nginx
+      volumeMounts:
+        - name: configmap
+          mountPath: /config
+  volumes:
+    - name: configmap
+      configMap:
+        name: credentials
+        items:
+          - key: USERNAME
+            path: username.txt
+          - key: PASSWORD
+            path: password.txt
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: credentials
+  namespace: learning
+data:
+  USERNAME: "nitinsharmacs"
+  PASSWORD: "password"

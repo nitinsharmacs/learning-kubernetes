@@ -1,0 +1,24 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: ingress-role
+  namespace: learning
+rules:
+  - apiGroups: ["*"]
+    resources: ["*"]
+    verbs: ["*"]
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: ingress-role-binding
+  namespace: learning
+subjects:
+  - kind: ServiceAccount
+    name: nginx-controller-sa
+    namespace: learning
+roleRef:
+  name: ingress-role
+  kind: ClusterRole
+  apiGroup: rbac.authorization.k8s.io

@@ -3,21 +3,28 @@ kind: Ingress
 metadata:
   name: app-ingress
   namespace: learning
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
-  rules:
-    - http:
-        paths:
-          - path: /wear
-            pathType: Prefix
-            backend:
-              service:
-                name: wear-svc
-                port:
-                  number: 8080
-          - path: /video
-            pathType: Prefix
-            backend:
-              service:
-                name: video-svc
-                port:
-                  number: 8080
+  defaultBackend:
+    service:
+      name: wear-svc
+      port: 
+        number: 8080
+  # rules:
+  #   - http:
+  #       paths:
+  #         - path: /wear(/|$)(.*)
+  #           pathType: Prefix
+  #           backend:
+  #             service:
+  #               name: wear-svc
+  #               port:
+  #                 number: 8080
+  #         - path: /video(/|$)(.*)
+  #           pathType: Prefix
+  #           backend:
+  #             service:
+  #               name: video-svc
+  #               port:
+  #                 number: 8080

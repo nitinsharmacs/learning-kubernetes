@@ -1,0 +1,8 @@
+apiVersion: people.com/v1
+kind: Person
+metadata:
+  name: nitin
+  namespace: learning
+spec:
+  name: Nitin Sharma
+  age: 24

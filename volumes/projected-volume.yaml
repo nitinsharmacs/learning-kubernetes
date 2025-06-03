@@ -1,0 +1,50 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+  labels:
+    type: router
+  namespace: learning
+spec:
+  containers:
+    - name: nginx-con
+      image: nginx
+      volumeMounts:
+        - name: projected
+          mountPath: /projected
+  volumes:
+    - name: projected
+      projected:
+        sources:
+          - configMap:
+              name: urls
+              items:
+                - key: HOMEPAGE
+                  path: config/homepage
+          - secret:
+              name: user-cred
+              items:
+                - key: USERNAME
+                  path: secret/username
+                - key: PASSWORD
+                  path: secret/password
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: urls
+  namespace: learning
+data:
+  HOMEPAGE: website.com/home
+  CONTACT: website.com/contact
+
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: user-cred
+  namespace: learning
+data:
+  USERNAME: dXNlcm5hbWUK
+  PASSWORD: cGFzc3dvcmQK

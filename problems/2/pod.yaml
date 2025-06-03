@@ -4,9 +4,18 @@ metadata:
   name: nginx
   namespace: learning
 spec:
-  automountServiceAccountToken: false
-  serviceAccountName: pod-reader-sa
   containers:
     - name: nginx
       image: nginx
+      volumeMounts:
+        - name: service-token
+          mountPath: /secrets
+  automountServiceAccountToken: false
+  serviceAccountName: pod-reader-sa
+  volumes:
+    - name: service-token
+      projected:
+        sources:
+          - serviceAccountToken:
+              path: token-sa
     
